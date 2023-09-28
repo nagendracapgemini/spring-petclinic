@@ -14,5 +14,5 @@ COPY spring-petclinic-*.jar /app/
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "spring-petclinic-*.jar"]
+CMD ["java", "-jar", "/spring-petclinic-*.jar"]
 
