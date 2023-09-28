@@ -1,18 +1,7 @@
-FROM amazoncorretto:11
-
-LABEL author="Docker"
-
-LABEL organization="Docker"
-
-LABEL project="Demo"
-
-WORKDIR /app
-
-# Copy from local file on Docker host into docker image
-
-COPY spring-petclinic-*.jar /app/
-
+FROM ubuntu:22.04
+RUN apt update
+RUN apt install openjdk-11-jdk wget -y
+RUN wget https://referenceapplicationskhaja.s3.us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
 EXPOSE 8080
-
-CMD ["java", "-jar", "/spring-petclinic-*.jar"]
+CMD ["java", "-jar", "/spring-petclinic-2.4.2.jar"]
 
