@@ -1,65 +1,38 @@
-## Manifest for ReplicaSet
-
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: spring-petclinic
-  labels:
-    app: spring
-    layer: web
-    version: "1.0"
+  name: my-springboot-deployment
 spec:
-  minReadySeconds: 1
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: spring
+      app: springboot-app
   template:
     metadata:
-      name: spring-petclinic
       labels:
-        app: spring
-        version: "1.0"
+        app: springboot-app
     spec:
       containers:
-        - name: Spring-petclinic
-          image: udpacr.azurecr.io/myimage:v1
-          ports:
-            - containerPort: 8080
-
+      - name: my-springboot-app
+        image: udpacr.azurecr.io/myimage:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+# service type loadbalancer       
 ---
-##Manifest for svc.yaml
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: spring-petclinic
+  labels:
+    app: springboot-app
+    k8s-app: springboot-app
+  name: springboot-app
 spec:
-  selector:
-    app: spring
-  type: ClusterIP
   ports:
-    - name: spring-svc
-      port: 8080
-      targetPort: 8080
-      protocol: TCP
-
-
-
----
-## Manifest nodeport.yaml
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: spring-nodeport
-spec:
-  type: NodePort
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  type: LoadBalancer
   selector:
-    app: spring
-    ver: "1.0"
-  ports:
-    - name: webport
-      port: 35000
-      targetPort: 8080
-      nodePort: 32000
+    app: springboot-app
