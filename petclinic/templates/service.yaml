@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "petclinic.fullname" . }}
+  name: ui-service
   labels:
-    {{- include "petclinic.labels" . | nindent 4 }}
+   {{- include "ui.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  - name: http
+    port: 8080
+    targetPort: 8080
   selector:
-    {{- include "petclinic.selectorLabels" . | nindent 4 }}
+    app: react-ui
+  type: LoadBalancer
