@@ -35,4 +35,5 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
- 
+hpa:
+  enabled: false 
