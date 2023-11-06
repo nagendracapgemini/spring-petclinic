@@ -20,8 +20,3 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
           {{- toYaml .Values.app.computeres | nindent 12 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
