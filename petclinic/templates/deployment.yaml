@@ -19,4 +19,4 @@ spec:
           image: {{ .Values.app.image }}
           imagePullPolicy: IfNotPresent
           resources:
-          {{- toYaml .Values.app.computeres | nindent 12 }}
+          {{- toYaml .Values.app.computeres | nindent 11 }}
