@@ -37,3 +37,5 @@ securityContext: {}
 
 hpa:
   enabled: true 
+  maxReplicas: 2
+  minReplicas: 1
