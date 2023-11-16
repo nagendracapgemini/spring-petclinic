@@ -2,6 +2,7 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
+  name: react-ui
   annotations:
    {{- include "ui.labels" . | nindent 4 }}
 spec:
