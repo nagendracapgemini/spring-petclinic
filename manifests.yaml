@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-springboot-app
-        image: udpacr.azurecr.io/myimage:v1
+        image: mana007.azurecr.io/spring:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
